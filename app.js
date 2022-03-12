@@ -22,6 +22,9 @@ const exphbs = require('express-handlebars')
 // require restaurant.json
 const restaurantsData = require('./restaurant.json').results
 
+// require restaurant.js
+const Restaurant = require('./models/restaurant')
+
 // setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -31,7 +34,10 @@ app.use(express.static('public'))
 
 // routes setting 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantsData })
+  Restaurant.find()
+    .lean()
+    .then(restaurantsData => res.render('index', { restaurantsData }))
+    .catch(error => console.log(error))
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
