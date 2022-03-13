@@ -79,6 +79,14 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 刪除餐廳
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // searchbar setting 搜尋餐廳
 app.get("/search", (req, res) => {
