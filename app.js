@@ -60,6 +60,25 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .then(restaurantData => res.render('show', { restaurantData }))
     .catch(error => console.log(error))
 })
+// 編輯餐廳頁面
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const { restaurant_id } = req.params
+  Restaurant.findById(restaurant_id)
+    .lean()
+    .then(restaurantData => res.render('edit', { restaurantData }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const  restaurant_id  = req.params.id
+  return Restaurant.findById(restaurant_id)
+    .then(restaurantsData => { 
+      return restaurantsData.update(req.body) 
+    })
+    .then(() => res.redirect(`/restaurants/${restaurant_id}`))
+    .catch(error => console.log(error))
+})
+
 
 // searchbar setting 搜尋餐廳
 app.get("/search", (req, res) => {
