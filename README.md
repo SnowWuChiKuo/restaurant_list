@@ -11,5 +11,18 @@ npm i express@4.16.4
 4. 安裝Handlebars
 npm i express-handlebar@3.0.0
 
+開發工具:
+1. Node.js: 14.16.0
+2. express: 4.17.1
+3. express-handlebars: 4.0.2
+4. mongoose: 5.9.7
+5. MongoDB
+
+啟動程式:
+1. npm run dev
+
 功能描述 (features)：
-1.點擊圖面或文字可進入應對的店家的詳細解說
+1. 點擊圖面或文字可進入應對的店家的詳細解說
+2. 點擊 Detail 可看到餐廳詳細資料
+3. 點擊 edit 可進行編輯餐廳詳細資料
+4. 點擊 delete 可進行刪除此餐廳
