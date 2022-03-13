@@ -11,16 +11,6 @@ const restaurantsData = require('./restaurant.json').results
 // require restaurant.js
 const Restaurant = require('./models/restaurant')
 
-// setting template engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
-
-// setting static files
-app.use(express.static('public'))
-
-app.use(bodyParser.urlencoded({ extended: true }))
-
-
 const app = express()
 const port = 3000
 
@@ -35,6 +25,15 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
 })
+
+// setting template engine
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
+// setting static files
+app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
+
 
 // routes setting 首頁
 app.get('/', (req, res) => {
@@ -53,11 +52,13 @@ app.post('/restaurants', (req,res) => {
     .then(() => res.redirect('/'))     // 新增完成導回首頁
     .catch(error => console.log(error))
 })
-// 顯示餐廳詳細資料
+// 瀏覽特定餐廳
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const { restaurant_id } = req.params
-  const restaurantData = restaurantsData.find(restaurant => restaurant.id === Number(restaurant_id))
-  res.render('show', { restaurantData })
+  Restaurant.findById(restaurant_id)
+    .lean()
+    .then(restaurantData => res.render('show', { restaurantData }))
+    .catch(error => console.log(error))
 })
 
 // searchbar setting 搜尋餐廳
