@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 // require restaurant.json
 const restaurantsData = require('./restaurant.json').results
 
@@ -33,6 +34,7 @@ app.set('view engine', 'handlebars')
 // setting static files
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 
 // routes setting 首頁
@@ -69,7 +71,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const  restaurant_id  = req.params.id
   return Restaurant.findById(restaurant_id)
     .then(restaurantsData => { 
@@ -80,7 +82,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // 刪除餐廳
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
