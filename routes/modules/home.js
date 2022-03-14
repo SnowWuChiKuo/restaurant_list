@@ -3,11 +3,16 @@ const router = express.Router()
 
 const Restaurant = require('../../models/restaurant')
 
+const sortOpt = [
+  { val: 1, txt: 'A > Z', "sort": "name" },
+  { val: 2, txt: 'Z > A', "sort": "-name"},
+]
+
 // routes setting 首頁
 router.get('/', (req, res) => {
   Restaurant.find()
     .lean()
-    .then(restaurantsData => res.render('index', { restaurantsData }))
+    .then(restaurantsData => res.render('index', { restaurantsData, sortOpt }))
     .catch(error => console.log(error))
 })
 
@@ -18,6 +23,11 @@ router.get('/search', (req, res) => {
 
   const keywords = req.query.keywords
   const keyword = req.query.keywords.trim().toLowerCase()
+  const sort = sortOpt.filter( n => {
+    return n.val == req.params.sort
+  })
+  console.log(req.params.id)
+  console.log(sort)
 
   Restaurant.find({})
     .lean()
@@ -29,7 +39,7 @@ router.get('/search', (req, res) => {
       )
       res.render('index', {
         restaurantsData: filterRestaurantsData,
-        keywords,
+        keywords, sort,
       })
     })
     .catch(err => console.log(err))

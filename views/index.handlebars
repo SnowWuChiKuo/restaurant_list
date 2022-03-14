@@ -24,10 +24,9 @@
 
           <div class="input-group">
             <select class="form-control" id="sort" name="sort">
-              <option value="A > Z">A > Z</option>
-              <option value="Z > A">Z > A</option>
-              <option value="類別">類別</option>
-              <option value="地區">地區</option>
+              {{#each sortOpt}}
+                <option value="{{ this.val }}"> {{this.txt}} </option>
+              {{/each}}
             </select>
           </div>
         </div>
@@ -49,7 +48,7 @@
       <div class="card-columns">
         {{#each restaurantsData}}
         <a 
-          href="/restaurants/{{this.id}}" 
+          href="/restaurants/{{this._id}}" 
           class="text-secondary"
         >
           <div class="card mb-3">
