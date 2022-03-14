@@ -24,14 +24,20 @@
 
           <div class="input-group">
             <select class="form-control" id="sort" name="sort">
-              <option>A > Z</option>
-              <option>Z > A</option>
-              <option>類別</option>
-              <option>地區</option>
+              <option value="A > Z">A > Z</option>
+              <option value="Z > A">Z > A</option>
+              <option value="類別">類別</option>
+              <option value="地區">地區</option>
             </select>
           </div>
         </div>
+        </div>
       </form>
+      <div class="text-right m-2">
+        <a href="/restaurants/new">
+          <button class="btn btn-primary">新增餐廳</button>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -39,9 +45,9 @@
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
-    {{#each restaurantsData}}
-    <div class="col-12 col-sm-4 col-md-4">
+    <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
+        {{#each restaurantsData}}
         <a 
           href="/restaurants/{{this.id}}" 
           class="text-secondary"
@@ -74,8 +80,8 @@
             </div>
           </div>
         </a>
+        {{/each}}
       </div>
     </div>
-    {{/each}}
   </div>
 </div>

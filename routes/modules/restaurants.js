@@ -49,23 +49,5 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// searchbar setting 搜尋餐廳
-router.get("/search", (req, res) => {
-  // if (!req.query.keywords) {
-  //   res.redirect("/")
-  // }
-
-  const keywords = req.query.keywords
-  const keyword = req.query.keywords.trim().toLowerCase()
-
-  const restaurants = restaurantsData.filter(
-    data =>
-      data.name.toLowerCase().includes(keyword) ||
-      data.category.includes(keyword)
-  )
-
-  res.render('index', { restaurants, keywords })
-})
-
 
 module.exports = router
