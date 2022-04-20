@@ -23,11 +23,7 @@ router.get('/search', (req, res) => {
 
   const keywords = req.query.keywords
   const keyword = req.query.keywords.trim().toLowerCase()
-  const sort = sortOpt.filter( n => {
-    return n.val == req.params.sort
-  })
-  console.log(req.params.id)
-  console.log(sort)
+
 
   Restaurant.find({})
     .lean()
@@ -39,7 +35,7 @@ router.get('/search', (req, res) => {
       )
       res.render('index', {
         restaurantsData: filterRestaurantsData,
-        keywords, sort,
+        keywords,
       })
     })
     .catch(err => console.log(err))
