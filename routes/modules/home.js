@@ -10,7 +10,8 @@ const sortOpt = [
 
 // routes setting 首頁
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .then(restaurantsData => res.render('index', { restaurantsData, sortOpt }))
     .catch(error => console.log(error))
@@ -20,6 +21,7 @@ router.get('/search', (req, res) => {
   if (!req.query.keywords) {
     res.redirect('/')
   }
+
 
   const keywords = req.query.keywords
   const keyword = req.query.keywords.trim().toLowerCase()
@@ -35,7 +37,7 @@ router.get('/search', (req, res) => {
       )
       res.render('index', {
         restaurantsData: filterRestaurantsData,
-        keywords,
+        keywords
       })
     })
     .catch(err => console.log(err))
