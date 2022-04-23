@@ -4,8 +4,8 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 const sortOpt = [
-  { val: 1, txt: 'A > Z', "sort": "name" },
-  { val: 2, txt: 'Z > A', "sort": "-name"},
+  { val: 1, txt: 'A > Z', sort: 'name' },
+  { val: 2, txt: 'Z > A', sort: '-name'}
 ]
 
 // routes setting 首頁

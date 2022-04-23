@@ -54,7 +54,7 @@ router.post('/register', (req, res) => {
           confirmPassword
         })
       }
-            // 如果還沒註冊: 建立資料庫 & 加密
+      // 如果還沒註冊: 建立資料庫 & 加密
       return bcrypt
         .genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
