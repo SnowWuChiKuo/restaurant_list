@@ -1,3 +1,6 @@
+![image](https://github.com/SnowWuChiKuo/restaurant_list/blob/master/A1-1.JPG)
+
+---
 環境建置與需求 (prerequisites)：
 1. express的版本4.16.4
 2. express-handlebars:3.0.0
@@ -10,7 +13,7 @@ npm init -y
 npm i express@4.16.4
 4. 安裝Handlebars
 npm i express-handlebar@3.0.0
-
+---
 開發工具:
 1. Node.js: 14.16.0
 2. express: 4.17.1
@@ -24,11 +27,11 @@ npm i express-handlebar@3.0.0
 10. method-override: 3.0.0
 11. passport: 0.4.1
 12. passport-facebook: 3.0.0
-
+---
 
 啟動程式:
 1. npm run dev
-
+---
 功能描述 (features)：
 1. 點擊圖面或文字可進入應對的店家的詳細解說
 2. 點擊 Detail 可看到餐廳詳細資料
