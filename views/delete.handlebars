@@ -1,0 +1,13 @@
+<div class="container py-5 d-flex justify-content-center">
+  <div class="card mb-3">
+    <div class="card-body p-3">
+      <h4 class="card-title mb-1">確定要將 " {{ restaurant.name }} " 這筆餐廳資訊刪除嗎?</h4>
+      <div class="card-footer d-flex justify-content-end flex-wrap">
+        <form action="/restaurants/{{ restaurant._id }}?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-danger m-2">delete</button>
+          <a href="/" class="btn btn-primary m-2">取消</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

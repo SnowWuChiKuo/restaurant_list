@@ -68,6 +68,15 @@ router.put('/:id', (req, res) => {
 })
 
 // 刪除餐廳
+router.get('/:id/delete', (req, res) => {
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
+    .lean()
+    .then(restaurant => res.render('delete', { restaurant }))
+    .catch(error => console.log(error))
+})
+
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id

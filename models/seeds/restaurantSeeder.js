@@ -6,7 +6,6 @@ if (process.env.NODE_ENV !== 'production') {
 const db = require('../../config/mongoose')
 const User = require('../user')
 const Restaurant = require('../restaurant')
-const restaurant = require('../restaurant')
 const restaurantList = require('../../restaurant.json').results
 // 引用資料夾內部的資料庫進行使用
 
